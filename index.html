@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SmartStore</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body style="-webkit-app-region: drag">
+		<img class="img" src="SmartStoreLogo 300x191.png">
+		<div class="search_categories">
+			<section class="select">
+				<p>
+					<select name = "search_categories" id="search_categories1">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i1></input>
+				</p>
+				<p>
+					<select name = "search_categories" id="search_categories2">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i2></input>
+				</p>
+				<p>
+					<select name = "search_categories" id="search_categories3">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i3></input>
+				</p>
+				<p>
+					<select name = "search_categories" id="search_categories4">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i4></input>
+				</p>
+				<p>
+					<select name = "search_categories" id="search_categories5">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i5></input>
+				</p>
+				<p>
+					<select name = "search_categories" id="search_categories6">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i6></input>
+				</p>
+				<p>
+					<select name = "search_categories" id="search_categories7">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i7></input>
+				</p>
+				<p>
+					<select name= "search_categories" id="search_categories8">
+						<Option value = "0">Audit Rule</Option>
+						<Option value = "1">Case</Option>
+						<Option value = "2">Employee</Option>
+						<Option value = "3">Entity</Option>
+						<Option value = "4">Report</Option>
+						<Option value = "5">Workflow</Option>
+						<Option selected="selected" value = "6">Other</Option>
+					</select>
+					<input id=i8></input>
+				</p>
+			</section>
+			<footer></footer>
+		</div>
+	</body>
+	<script>
+
+	const clipboard = require('electron-clipboard-extended')
+	const { globalShortcut, ipcRenderer } = require('electron')	
+	
+	//var ncp = require('copy-paste').global()
+
+	// global = function (){
+	// 	GLOBAL.copy = exports.copy
+	// 	GLOBAL.paste = exports.paste
+	// 	return exports
+	// }
+	function copyToClipboard(text){
+		var dummy = document.createElement("input");
+		document.body.appendChild(dummy);
+		dummy.setAttribute('value', text);
+		dummy.select();
+		document.execCommand("copy");
+		ipcRenderer.send('copyExec','Send Paste')
+		//document.execCommand("paste");
+		document.body.removeChild(dummy);
+	}
+
+	ipcRenderer.on('gHKReport', (event, arg) => {
+  		var gh1 = document.querySelector('#i1').value;
+		console.log(gh1)
+		copyToClipboard(gh1)
+		  //ncp.paste(global)
+	});
+	ipcRenderer.on('gHKEntity', (event, arg) => {
+  		var gh2 = document.querySelector('#i2').value;
+		copyToClipboard(gh2)
+	});
+	ipcRenderer.on('gHKCase', (event, arg) => {
+  		var gh3 = document.querySelector('#i3').value;
+		copyToClipboard(gh3)
+	});
+	ipcRenderer.on('gHKAuditRule', (event, arg) => {
+  		var gh4 = document.querySelector('#i4').value;
+		copyToClipboard(gh4)
+	});
+	ipcRenderer.on('gHKWorkflow', (event, arg) => {
+  		var gh5 = document.querySelector('#i5').value;
+		copyToClipboard(gh5)
+	});
+	ipcRenderer.on('gHKUser', (event, arg) => {
+  		var gh6 = document.querySelector('#i6').value;
+		copyToClipboard(gh6)
+	});
+
+	clipboard
+		.on('text-changed', () => {
+			let currentText = clipboard.readText()
+			var tLength = currentText.length
+			var lIndex = document.querySelector('#search_categories1').selectedIndex
+			
+			var allNum = /^[-+]?[0-9]+$/;
+			var allNumStart1 = /^1[0-9]+$/;
+			var allCapsLetNum = /^[0-9A-Z]+$/;
+			var allLowerLetNum = /^[0-9a-z]+$/;
+			var startWithPorT = /^[pt][0-9a-z]+$/;
+			var wf1up = /\b(\w*1-Up\w*)\b/g;
+			var wflc = /\b(\w*workflow\w*)\b/g;
+			var wfpc = /\b(\w*Workflow\w*)\b/g;
+			var wfuc = /\b(\w*WORKFLOW\w*)\b/g;
+
+			if (tLength === 8 && currentText.match(allNumStart1)) { var isCase = true}
+			if (tLength === 20 && currentText.match(allCapsLetNum)) { var isReport = true}
+			if (currentText.match(wf1up) || currentText.match(wfuc) || currentText.match(wflc) || currentText.match(wfpc)) { var isWorkflow = true}
+			if (tLength === 12 && currentText.match(allLowerLetNum) && currentText.match(startWithPorT)) { var isEntity = true}
+			if (tLength === 90000) {var isAuditRule = true } //NEED TO CREATE LOGIC HERE
+			if (tLength === 90001) {var isEmployee = true } //NEED TO CREATE LOGIC HERE
+
+			//for (i=0; )
+			if (document.querySelector('#i1').value === '') {
+				document.querySelector('#i1').value = currentText
+				//ipcRenderer.send('strLen', currentText)
+				if (isAuditRule) {
+					document.querySelector('#search_categories1').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories1').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories1').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories1').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories1').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories1').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i2').value === '') {
+				document.querySelector('#i2').value = currentText
+				if (isAuditRule) {
+					document.querySelector('#search_categories2').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories2').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories2').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories2').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories2').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories2').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i3').value === '') {
+				document.querySelector('#i3').value = currentText
+				if (isAuditRule) {
+					document.querySelector('#search_categories3').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories3').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories3').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories3').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories3').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories3').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i4').value === '') {
+				document.querySelector('#i4').value = currentText
+				if (isAuditRule) {
+					document.querySelector('#search_categories4').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories4').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories4').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories4').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories4').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories4').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i5').value === '') {
+				document.querySelector('#i5').value = currentText
+				if (isAuditRule) {
+					document.querySelector('#search_categories5').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories5').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories5').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories5').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories5').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories5').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i6').value === '') {
+				document.querySelector('#i6').value = currentText
+			if (isAuditRule) {
+					document.querySelector('#search_categories6').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories6').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories6').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories6').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories6').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories6').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i7').value === '') {
+				document.querySelector('#i7').value = currentText
+				if (isAuditRule) {
+					document.querySelector('#search_categories7').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories7').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories7').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories7').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories7').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories7').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i8').value === '') {
+				document.querySelector('#i8').value = currentText
+				if (isAuditRule) {
+					document.querySelector('#search_categories8').selectedIndex = "0"	
+				}
+				if (isCase) {
+					document.querySelector('#search_categories8').selectedIndex = "1"
+				}
+				if (isEmployee) {
+					document.querySelector('#search_categories8').selectedIndex = "2"
+				}
+				if (isEntity) {
+					document.querySelector('#search_categories8').selectedIndex = "3"
+				} 
+				if (isReport) {
+					document.querySelector('#search_categories8').selectedIndex = "4"
+				}	
+				if (isWorkflow) {
+					document.querySelector('#search_categories8').selectedIndex = "5"	
+				}
+			} else if (document.querySelector('#i8').value != '') {
+				ipcRenderer.send('fieldsFull', 'All fields are full!')
+			}
+		})
+		.once('text-changed', () => {
+			console.log('TRIGGERED ONLY ONCE')
+		})
+		.on('image-changed', () => {
+			let currentIMage = clipboard.readImsage()
+		})
+		.startWatching();
+			window: document.getElementById('webview')
+	</script>
+</html>

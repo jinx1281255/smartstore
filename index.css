@@ -1,0 +1,46 @@
+html,
+body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+/* img {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+} */
+
+/* .search_categories{
+    font-size: 13px;
+    padding: 10px 8px 10px 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  } */
+  
+  .search_categories .select{
+    background-position: 80% center;
+    -webkit-app-region: no-drag;
+  }
+  
+  #img {
+    -webkit-app-region: no-drag;  
+  }
+
+  .search_categories .select select{
+    line-height: 1;
+    border: 2;
+    padding: 0;
+    border-radius: 2;
+    position: relative;
+    z-index: 10;
+	font-size: .76em;
+	margin-left: 40px;
+    -webkit-app-region: no-drag;
+  }
